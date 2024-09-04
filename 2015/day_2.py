@@ -36,8 +36,42 @@ def calculate_total_paper_needed(input_lines: list[str]) -> int:
     return total_paper
 
 
+def find_smallest_side_perimeter(l: int, w: int, h: int) -> int:
+    """Returns the perimeter of the smallest of a given
+    present."""
+
+    peri_1 = 2 * (l + w)
+    peri_2 = 2 * (w + h)
+    peri_3 = 2 * (h + l)
+
+    smallest_perimeter = min(peri_1, peri_2, peri_3)
+
+    return smallest_perimeter
+
+
+def find_box_volume(l: int, w: int, h: int) -> int:
+    """Returns the volume of a given present."""
+
+    return l * w * h
+
+
+def calculate_total_ribbon_needed(input_lines: list[str]) -> int:
+    """Calculates total ribbon needed for all presents."""
+
+    total_ribbon = 0
+    for line in input_lines:
+        l, w, h = map(int, line.strip().split("x"))
+        volume = find_box_volume(l, w, h)
+        smallest_side_perimeter = find_smallest_side_perimeter(l, w, h)
+        total_ribbon += volume + smallest_side_perimeter
+
+    return total_ribbon
+
+
 if __name__ == "__main__":
     input_lines = read_input("day_2_input.txt")
     total_paper = calculate_total_paper_needed(input_lines)
+    total_ribbon = calculate_total_ribbon_needed(input_lines)
 
     print(f"Total wrapping paper needed: {total_paper}")
+    print(f"Total ribbon needed: {total_ribbon}")
