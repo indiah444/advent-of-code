@@ -1,3 +1,6 @@
+"""Solution for Advent of Code 2015 Day 1."""
+
+
 def read_input(filename: str) -> list[str]:
     """Opens and reads a file."""
 
@@ -6,6 +9,10 @@ def read_input(filename: str) -> list[str]:
 
 
 def find_floor_no(direction: str) -> int:
+    """Returns the floor number based on a set of 
+    directions given as a string consisting of 
+    parentheses."""
+
     floor_no = 0
 
     for char in direction:
